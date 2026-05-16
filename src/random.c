@@ -9,4 +9,7 @@ void randseed(const char *seed)
 	srand(time(nullptr));
 }
 
-int randint(int min, int max) { return (rand() % (max - min)) + min + 1; }
+int randint(int min, int max) 
+{ 
+	return rand() % (max + 1 - min) + min;
+}
