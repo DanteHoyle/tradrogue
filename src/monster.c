@@ -1,5 +1,11 @@
 #include "monster.h"
 
+// Token, Name, Rune, HP, Attack Power
+#define MONSTER_TABLE(X) \
+	X("Bat",	'B',	10,	10) \
+	X("Goblin",	'G',	10,	10) \
+	X("Kobold",	'K',	25,	25)
+
 #define DEFINE_STRING_ARRAY(name, ...) name,
 #define DEFINE_RUNE_ARRAY(name, rune, ...) rune,
 #define DEFINE_HEALTH_ARRAY(name, rune, hp, ...) hp,
@@ -12,7 +18,7 @@ static int attack_table[] = { MONSTER_TABLE(DEFINE_ATTACK_ARRAY) };
 
 static bool is_valid_monster_type(int monster_type)
 {
-	return monster_type < 0 || monster_type >= MONSTER_TYPE_COUNT;
+	return monster_type > 0 || monster_type < MONSTER_TYPE_COUNT;
 }
 
 const char *monster_name(int monster_type)
