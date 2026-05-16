@@ -37,3 +37,10 @@ void entity_init_monster(struct entity *e, int x, int y, int monster_type)
 
 }
 void entity_init_item(struct entity *e, int x, int y);
+
+void entity_move(struct entity *e, int x, int y)
+{
+	e->x += x;
+	e->y += y;
+}
+
