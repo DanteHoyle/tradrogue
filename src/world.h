@@ -2,13 +2,20 @@
 
 #include "entity.h"
 
-#define ENTITY_MAX	128
-
-// World struct holds all entities
-// Player is always index 0
+// A world is a list of entities
 struct world {
-	struct entity entities[ENTITY_MAX];
+	struct entity entities[MAX_ENTITIES];
 	int count;
+	struct entity *player;
 };
 
-void world_init(struct world *w);
+
+// Reset a world to a default state
+void world_reset(struct world *w);
+
+void world_update(struct world *w);
+void world_render(struct world *w);
+
+void world_create_player(struct world *w, int x, int y, const char *name);
+void world_create_monster(struct world *w, int x, int y, int monster_type);
+void world_create_item(struct world *w, int x, int y);

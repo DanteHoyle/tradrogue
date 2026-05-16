@@ -1,13 +1,19 @@
 #pragma once
 
-typedef enum { ENTITY_PLAYER, ENTITY_MONSTER, ENTITY_ITEM } entity_t;
+#define MAX_ENTITIES	128
+
+typedef enum {
+	ENTITY_NONE,
+	ENTITY_PLAYER,
+	ENTITY_MONSTER,
+	ENTITY_ITEM
+} entity_t;
 
 struct entity {
 	entity_t type;
 	const char *name;
 	char rune;
 	int x, y;
-	bool alive;
 
 	// Combat stats
 	int hp, max_hp;
@@ -20,8 +26,6 @@ struct entity {
 	int item_type;
 };
 
-void entity_init_player(struct entity *e, int x, int y, const char *name);
-void entity_init_monster(struct entity *e, int x, int y, int monster_type);
-void entity_init_item(struct entity *e, int x, int y);
-
-void entity_move(struct entity *e, int x, int y);
+// Move an entityh by a relative amount
+void entity_move_by(struct entity *e, int dx, int dy);
+void entity_move_to(struct entity *e, int x, int y);
