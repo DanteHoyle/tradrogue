@@ -18,6 +18,10 @@ static enum USER_ACTION wait_for_action(void)
 		case 'j': case KEY_DOWN: return ACT_GO_S;
 		case 'k': case KEY_UP: return ACT_GO_N;
 		case 'l': case KEY_RIGHT: return ACT_GO_E;
+		case 'y': return ACT_GO_NW;
+		case 'u': return ACT_GO_NE;
+		case 'b': return ACT_GO_SW;
+		case 'n': return ACT_GO_SE;
 		case 'Q': return ACT_QUIT;
 	}
 

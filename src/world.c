@@ -21,11 +21,13 @@ static struct entity *new_entity(struct world *w)
 		exit_game();
 	}
 
+	LOG_DEBUG("Adding a new entity to world id=%d", w->count);
 	return &w->entities[w->count++];
 }
 
 void world_reset(struct world *w)
 {
+	LOG_DEBUG("Resetting world struct %p", (void *)w);
 	memset(w, 0, sizeof(struct world));
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "util.h"
 #define MAX_ENTITIES	128
 
 typedef enum {
@@ -29,3 +30,4 @@ struct entity {
 // Move an entityh by a relative amount
 void entity_move_by(struct entity *e, int dx, int dy);
 void entity_move_to(struct entity *e, int x, int y);
+void entity_move_dir(struct entity *e, enum DIRECTION dir);

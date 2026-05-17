@@ -1,33 +1,47 @@
 #include "game.h"
+#include "entity.h"
 #include "exit.h"
+#include "world.h"
 #include "ui.h"
 #include "random.h"
 
 static bool running = false;
-static struct world world;
+static struct world world = {};
 
 static void handle_action(enum USER_ACTION action)
 {
 	switch (action) {
 	case ACT_GO_N:
-		entity_move_by(world.player, 0, -1);
+		entity_move_dir(world.player, DIR_N);
 		break;
 	case ACT_GO_S:
-		entity_move_by(world.player, 0, 1);
+		entity_move_dir(world.player, DIR_S);
 		break;
 	case ACT_GO_E:
-		entity_move_by(world.player, 1, 0);
+		entity_move_dir(world.player, DIR_E);
 		break;
 	case ACT_GO_W:
-		entity_move_by(world.player, -1, 0);
+		entity_move_dir(world.player, DIR_W);
 		break;
 	case ACT_QUIT:
 		running = false;
 		break;
 	case ACT_NONE:
 		break;
-	}
-
+        case ACT_GO_NE:
+		entity_move_dir(world.player, DIR_NE);
+		break;
+        case ACT_GO_NW:
+		entity_move_dir(world.player, DIR_NW);
+		break;
+        case ACT_GO_SE:
+		entity_move_dir(world.player, DIR_SE);
+		break;
+        case ACT_GO_SW:
+		entity_move_dir(world.player, DIR_SW);
+		break;
+          break;
+        }
 }
 
 void game_init(struct game_config config)

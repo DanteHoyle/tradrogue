@@ -9,11 +9,11 @@ enum USER_ACTION {
 	ACT_GO_S,
 	ACT_GO_E,
 	ACT_GO_W,
-	// ACT_GO_NE,
-	// ACT_GO_NW,
-	// ACT_GO_SE,
-	// ACT_GO_SW,
-	//
+	ACT_GO_NE,
+	ACT_GO_NW,
+	ACT_GO_SE,
+	ACT_GO_SW,
+
 	// ACT_WAIT,
 	// ACT_DRINK,
 	// ACT_READ,
