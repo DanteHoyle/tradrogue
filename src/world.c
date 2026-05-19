@@ -4,10 +4,8 @@
 #include <ncurses.h>
 #include "ai.h"
 #include "entity.h"
-#include "ui.h"
 #include "log.h"
 #include "monster.h"
-#include "exit.h"
 
 #define PLAYER_INIT_HP		25
 #define PLAYER_INIT_ATTACK	10
@@ -39,19 +37,6 @@ void world_update(struct world *w)
 			continue;
 		ai_next_action(e);
 	}
-}
-
-void world_render(struct world *w)
-{
-	// Draw the screen
-	clear();
-
-	for (int i = 0; i < w->count; i++) {
-		struct entity *e = &w->entities[i];
-		if (e->type == ENTITY_NONE)
-			continue;
-		ui_draw_entity(e);
-        }
 }
 
 void world_create_player(struct world *w, int x, int y, const char *name)

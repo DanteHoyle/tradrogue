@@ -1,8 +1,9 @@
 #pragma once
 
-#include "entity.h"
+#include "map.h"
+#include "world.h"
 
-enum USER_ACTION {
+typedef enum {
 	ACT_NONE,
 
 	ACT_GO_N,
@@ -19,14 +20,14 @@ enum USER_ACTION {
 	// ACT_READ,
 
 	ACT_QUIT
-};
+} action_t;
+
 
 // Initializes curses, and sets up logger to use a file
 void ui_init(const char *log_path);
 // Destroys ncurses and closes the log file
 void ui_destroy(void);
-
-void ui_draw_entity(struct entity *e);
-
-enum USER_ACTION ui_wait_for_action(void);
-
+// Draw the map, player, monsters, and items to the screen
+void ui_draw_screen(struct world *w, struct map *m);
+// Get the next action from the player
+action_t ui_wait_for_action(void);

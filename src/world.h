@@ -13,8 +13,8 @@ struct world {
 // Reset a world to a default state
 void world_reset(struct world *w);
 
+// Update all monster entities
 void world_update(struct world *w);
-void world_render(struct world *w);
 
 void world_create_player(struct world *w, int x, int y, const char *name);
 void world_create_monster(struct world *w, int x, int y, int monster_type);

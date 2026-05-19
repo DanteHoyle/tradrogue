@@ -1,6 +1,6 @@
 #pragma once
 
-enum DIRECTION {
+enum direction {
 	DIR_N,
 	DIR_S,
 	DIR_W,
@@ -10,3 +10,7 @@ enum DIRECTION {
 	DIR_SW,
 	DIR_SE
 };
+
+void vector_from_direction(enum direction dir, int *dx, int *dy);
+
+void exit_game(void);
