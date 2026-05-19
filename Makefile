@@ -1,5 +1,7 @@
 BIN = build/tradrogue
-CFLAGS = -Wall -Wextra -Wpedantic -std=c23 -MMD -MP
+SANITIZE = -fsanitize=address,undefined
+CFLAGS = -Wall -Wextra -Wpedantic -std=c23 -MMD -MP -g $(SANITIZE)
+LDFLAGS += $(SANITIZE)
 LDLIBS = -lncurses
 
 SRCS = $(wildcard src/*.c)
