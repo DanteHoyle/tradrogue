@@ -1,7 +1,8 @@
 #pragma once
 
+// Cardinal Directions
 enum direction {
-	DIR_N,
+	DIR_N = 0,
 	DIR_S,
 	DIR_W,
 	DIR_E,

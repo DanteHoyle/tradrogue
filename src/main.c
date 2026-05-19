@@ -4,7 +4,6 @@
 int main(void)
 {
 	struct game_config config = {
-		.seed = "MySeed",
 		.player_name = "Dante",
 		.log_path = "game.log"
 	};

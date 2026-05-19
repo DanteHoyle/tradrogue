@@ -24,7 +24,7 @@ void ui_init(const char *log_path)
 
 	log_file = fopen(log_path, "a");
 	log_set_output(log_file);
-	LOG_INFO("Logging moved to file named '%s'", log_path);
+	LOG_DEBUG("Logging moved to file named '%s'", log_path);
 
 	initscr();
 	cbreak();

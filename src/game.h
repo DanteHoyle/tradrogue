@@ -2,7 +2,6 @@
 
 struct game_config {
 	const char *player_name;
-	const char *seed;
 	const char *log_path;
 };
 

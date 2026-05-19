@@ -1,17 +1,16 @@
 #include "random.h"
+
+#include <stdint.h>
 #include <time.h>
 #include <stdlib.h>
-#include "log.h"
 
-void randseed(const char *seed)
+// TODO: Add seeding from a string
+void random_seed(void)
 { 
-	// TODO: Add seeding from a string
-	LOG_INFO("Seeding RNG with: '%s'", seed);
-	(void)seed;
-	srand(time(nullptr));
+	srand((unsigned int)time(nullptr));
 }
 
-int randint(int min, int max) 
+int random_int(int min, int max) 
 { 
-	return rand() % (max + 1 - min) + min;
+	return min + rand() % (max+1 - min);
 }

@@ -48,7 +48,7 @@ static void handle_action(action_t action)
 void game_init(struct game_config config)
 {
 	ui_init(config.log_path);
-	randseed(config.seed);
+	random_seed();
 	world_reset(&world);
 	map_init(&map, dungeon_level);
 	world_create_player(&world, 10, 10, config.player_name);
