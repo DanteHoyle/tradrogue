@@ -31,4 +31,6 @@ struct entity {
 // Move an entityh by a relative amount
 void entity_move_by(struct entity *e, int dx, int dy);
 void entity_move_to(struct entity *e, int x, int y);
+
+// todo decouple map
 void entity_move_dir(struct map *m, struct entity *e, enum direction dir);

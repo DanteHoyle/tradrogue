@@ -31,6 +31,7 @@ void world_reset(struct world *w)
 
 void world_update(struct world *w)
 {
+	LOG_DEBUG("Updating entities in world");
 	for (int i = 0; i < w->count; i++) {
 		struct entity *e = &w->entities[i];
 		if (e->type != ENTITY_MONSTER)
@@ -69,7 +70,7 @@ void world_create_monster(struct world *w, int x, int y, int monster_type)
 		.hp = monster_default_hp(monster_type),
 		.max_hp = monster_default_hp(monster_type),
 	};
-
+	LOG_DEBUG("Created monster of type %d", monster_type);
 }
 void world_create_item(struct world *w, int x, int y)
 {

@@ -8,6 +8,13 @@
 
 #include <assert.h>
 
+struct game_state {
+	struct world world;
+	struct map map;
+	int level;
+	bool running;
+};
+
 static struct game_state gs = {};
 
 static void handle_action(action_t action)
@@ -25,11 +32,6 @@ static void handle_action(action_t action)
 	case ACT_GO_W:
 		entity_move_dir(&gs.map, gs.world.player, DIR_W);
 		break;
-	case ACT_QUIT:
-		gs.running = false;
-		break;
-	case ACT_NONE:
-		break;
         case ACT_GO_NE:
 		entity_move_dir(&gs.map, gs.world.player, DIR_NE);
 		break;
@@ -42,24 +44,34 @@ static void handle_action(action_t action)
         case ACT_GO_SW:
 		entity_move_dir(&gs.map, gs.world.player, DIR_SW);
 		break;
+	case ACT_QUIT:
+		gs.running = false;
+		break;
+	case ACT_NONE:
+		break;
         }
 }
 
-void game_init(const struct game_config *config)
+void game_init(const char *player_name, FILE *log_file)
 {
-	assert(config != nullptr);
+	assert(player_name != nullptr);
+	assert(log_file != nullptr);
 
-	gs.level = 1;
+	LOG_DEBUG("Initializing the game");
+	
+	gs->level = 1;
 
-	log_set_file(config->log_file);
+	log_set_file(log_file);
 	ui_init();
 	random_seed();
-	world_reset(&gs.world);
-	map_init(&gs.map, gs.level);
-	world_create_player(&gs.world, 10, 10, config->player_name);
+	world_reset(&gs->world);
+	map_init(&gs->map, gs);
+	world_create_player(&gs.world, 10, 10, player_name);
+
+	LOG_DEBUG("Finished initializing game");
 }
 
-void game_run(void)
+enum game_run_result game_run(struct game_state *gs)
 {
 	gs.running = true;
 

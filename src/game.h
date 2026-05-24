@@ -1,20 +1,16 @@
 #pragma once
 
-#include "map.h"
-#include "world.h"
 #include <stdio.h>
 
-struct game_config {
-	const char *player_name;
-	FILE *log_file;
+struct game_state;
+
+enum game_run_result {
+	EXIT_DEAD,
+	EXIT_QUIT,
+	EXIT_VICTORY,
+	EXIT_ERROR
 };
 
-struct game_state {
-	struct world world;
-	struct map map;
-	int level;
-	bool running;
-};
-
-void game_init(const struct game_config *config);
-void game_run(void);
+struct game_state *game_create(const char *player_name, FILE *log_file);
+enum game_run_result game_run(struct game_state *gs);
+void game_destroy(struct game_state *gs);
