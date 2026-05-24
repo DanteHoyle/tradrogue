@@ -9,5 +9,12 @@ struct game_config {
 	FILE *log_file;
 };
 
-void game_init(struct game_config config);
+struct game_state {
+	struct world world;
+	struct map map;
+	int level;
+	bool running;
+};
+
+void game_init(const struct game_config *config);
 void game_run(void);
