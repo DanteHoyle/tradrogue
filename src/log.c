@@ -1,23 +1,20 @@
 #include "log.h"
 
+#include <assert.h>
 #include <stdio.h>
 #include <time.h>
 #include <stdarg.h>
 
-#define DEFAULT_OUT_FILE stdout
-
 static FILE *out_file = nullptr;
 
-void log_set_output(FILE *out)
+void log_set_file(FILE *out)
 {
 	out_file = out;
 }
 
 void log_message(const char *lvl, const char *sfp, const char *sf, int l , const char *fmt, ...)
 {
-	if (out_file == nullptr)
-		log_set_output(DEFAULT_OUT_FILE);
-
+	assert(out_file != nullptr);
 
 	time_t now = time(NULL);
 	struct tm tm_buf;

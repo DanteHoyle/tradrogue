@@ -1,9 +1,12 @@
 #include "game.h"
 #include "entity.h"
+#include "log.h"
 #include "world.h"
 #include "ui.h"
 #include "map.h"
 #include "random.h"
+
+#include <assert.h>
 
 static bool running = false;
 static struct world world = {};
@@ -45,13 +48,16 @@ static void handle_action(action_t action)
         }
 }
 
-void game_init(struct game_config config)
+void game_init(const struct game_config *config)
 {
-	ui_init(config.log_path);
+	assert(config != nullptr);
+
+	log_set_file(config->log_file);
+	ui_init();
 	random_seed();
 	world_reset(&world);
 	map_init(&map, dungeon_level);
-	world_create_player(&world, 10, 10, config.player_name);
+	world_create_player(&world, 10, 10, config->player_name);
 }
 
 void game_run(void)

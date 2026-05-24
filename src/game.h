@@ -1,8 +1,12 @@
 #pragma once
 
+#include "map.h"
+#include "world.h"
+#include <stdio.h>
+
 struct game_config {
 	const char *player_name;
-	const char *log_path;
+	FILE *log_file;
 };
 
 void game_init(struct game_config config);

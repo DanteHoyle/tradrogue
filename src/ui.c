@@ -1,14 +1,10 @@
 #include "ui.h"
 
 #include <ncurses.h>
-#include <stdio.h>
 #include <assert.h>
 
 #include "entity.h"
-#include "log.h"
 #include "map.h"
-
-static FILE *log_file;
 
 static bool is_onscreen(int x, int y)
 {
@@ -18,14 +14,8 @@ static bool is_onscreen(int x, int y)
 	return ((x >= 0) && (x < max_x)) && ((y >= 0) && (y < max_y));
 }
 
-void ui_init(const char *log_path)
+void ui_init(void)
 {
-	assert(log_path != nullptr);
-
-	log_file = fopen(log_path, "a");
-	log_set_output(log_file);
-	LOG_DEBUG("Logging moved to file named '%s'", log_path);
-
 	initscr();
 	cbreak();
 	noecho();
@@ -37,7 +27,6 @@ void ui_init(const char *log_path)
 void ui_destroy(void)
 {
 	endwin();
-	fclose(log_file);
 }
 
 void ui_draw_entity(struct entity *e)

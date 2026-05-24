@@ -23,8 +23,8 @@ typedef enum {
 } action_t;
 
 
-// Initializes curses, and sets up logger to use a file
-void ui_init(const char *log_path);
+// Initialize curses
+void ui_init();
 // Destroys ncurses and closes the log file
 void ui_destroy(void);
 // Draw the map, player, monsters, and items to the screen
