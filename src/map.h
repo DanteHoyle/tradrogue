@@ -6,7 +6,12 @@ constexpr int MAP_WIDTH = 80;
 constexpr int MAP_HEIGHT = 24;
 constexpr int MAP_TILES_LEN = MAP_HEIGHT * MAP_WIDTH;
 
-struct map { tile_t tiles[MAP_TILES_LEN]; };
+constexpr int MAX_ROOMS_PER_MAP = 3;
+
+struct map {
+	tile_t tiles[MAP_TILES_LEN];
+	int dungeon_level;
+};
 
 // Initialize a map with rooms, paths, monsters, and items
 void map_init(struct map *m, int dungeon_level);

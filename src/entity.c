@@ -16,11 +16,10 @@ void entity_move_to(struct entity *e, int x, int y)
 
 void entity_move_dir(struct map *m, struct entity *e, enum direction dir)
 {
-	int dx, dy;
-	vector_from_direction(dir, &dx, &dy);
+	const struct vec2 *d = dir_to_vec2(dir);
 
-	int next_x = e->x + dx;
-	int next_y = e->y + dy;
+	int next_x = e->x + d->x;
+	int next_y = e->y + d->y;
 
 	const struct tile_data *td = map_at(m, next_x, next_y);
 

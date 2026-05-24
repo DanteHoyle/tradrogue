@@ -1,6 +1,7 @@
 #include "map.h"
 
 #include "tile.h"
+#include "log.h"
 #include <assert.h>
 #include <string.h>
 
@@ -8,6 +9,7 @@ struct room_params { int x, y, width, height; };
 
 static inline int index_at(int x, int y) { return (y * MAP_WIDTH) + x; }
 
+// Create a room on the map
 static void mkroom(struct map *m, struct room_params r)
 {
 	for (int row = 0; row < r.width; row++) {
@@ -28,8 +30,9 @@ const struct tile_data *map_at(struct map *m, int x, int y)
 
 void map_init(struct map *m, int dungeon_level)
 {
-	(void)dungeon_level;
+	LOG_DEBUG("Generating dungeon level: %d", dungeon_level);
 	memset(m, 0, sizeof(*m));
+	m->dungeon_level = dungeon_level;
 	mkroom(m, (struct room_params){
 		.x = 2,
 		.y = 2,
