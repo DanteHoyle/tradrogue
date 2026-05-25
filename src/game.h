@@ -2,7 +2,16 @@
 
 #include <stdio.h>
 
-struct game_state;
+#include "world.h"
+#include "map.h"
+
+
+struct game_state {
+	struct world world;
+	struct map map;
+	int dungeon_level;
+	bool running;
+};
 
 enum game_run_result {
 	EXIT_DEAD,
@@ -11,6 +20,6 @@ enum game_run_result {
 	EXIT_ERROR
 };
 
-struct game_state *game_create(const char *player_name, FILE *log_file);
+void game_init(struct game_state *gs, const char *player_name, FILE *log_file);
 enum game_run_result game_run(struct game_state *gs);
 void game_destroy(struct game_state *gs);

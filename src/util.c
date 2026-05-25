@@ -9,10 +9,10 @@ constexpr struct vec2 V2_NORTH = { 0, -1 };
 constexpr struct vec2 V2_SOUTH = { 0, 1 };
 constexpr struct vec2 V2_EAST = { 1, 0 };
 constexpr struct vec2 V2_WEST = { -1, 0 };
-constexpr struct vec2 V2_NORTH_EAST = { -1, 1 };
+constexpr struct vec2 V2_NORTH_EAST = { 1, -1 };
 constexpr struct vec2 V2_NORTH_WEST = { -1, -1 };
 constexpr struct vec2 V2_SOUTH_EAST = { 1, 1 };
-constexpr struct vec2 V2_SOUTH_WEST = { 1, -1 };
+constexpr struct vec2 V2_SOUTH_WEST = { -1, 1 };
 
 const struct vec2 *dir_to_vec2(enum direction dir)
 {

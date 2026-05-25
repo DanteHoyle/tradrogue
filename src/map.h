@@ -8,9 +8,12 @@ constexpr int MAP_TILES_LEN = MAP_HEIGHT * MAP_WIDTH;
 
 constexpr int MAX_ROOMS_PER_MAP = 3;
 
+struct room_params { int x, y, width, height; };
+
 struct map {
 	tile_t tiles[MAP_TILES_LEN];
-	int dungeon_level;
+	struct room_params rooms[MAX_ROOMS_PER_MAP];
+	int rooms_used;
 };
 
 // Initialize a map with rooms, paths, monsters, and items

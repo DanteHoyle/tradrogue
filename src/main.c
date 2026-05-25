@@ -1,22 +1,22 @@
 #include "game.h"
+#include "log.h"
 #include <stdio.h>
 
 
 int main(void)
 {
-	FILE *log = fopen("game.log", "a");
-	if (!log) {
+	FILE *log_file = fopen("game.log", "a");
+	if (!log_file) {
 		perror("Failed to open log file");
 		return 1;
 	}
 
-	struct game_config config = {
-		.player_name = "Dante",
-		.log_file = log
-	};
+	log_set_file(log_file);
 
-	game_init(&config);
-	game_run();
+	struct game_state gs = {};
 
-	fclose(log);
+	game_init(&gs, "Player", log_file);
+	game_run(&gs);
+
+	fclose(log_file);
 }
